@@ -36,3 +36,9 @@ And just run the image
 ```
 docker run --rm --env-file=.earthexplorerCredentials --mount source=my_directory,target=/import generate-osm-contours:1.0
 ```
+
+### Output
+
+The image will generate a pbf of contours data in OSM format, thanks to http://katze.tfiu.de/projects/phyghtmap/
+
+It is configured to generate 10m steps lines.

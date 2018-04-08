@@ -34,5 +34,5 @@ In my_directory directory, download from http://download.geofabrik.de/ a poly fi
 And just run the image
 
 ```
-docker run --rm --mount source=my_directory,target=/import generate-osm-contours:1.0
+docker run --rm --env-file=.earthexplorerCredentials --mount source=my_directory,target=/import generate-osm-contours:1.0
 ```

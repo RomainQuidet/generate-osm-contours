@@ -1,15 +1,19 @@
 # Use latest Debian
 FROM debian:latest
-MAINTAINER "Romain Quidet <http://www.xdappfactory.com>"
+LABEL author="Irfan Ismail <https://irfanismail.com>"
+
 
 # Update & install wget
 RUN apt-get update -y \
  && apt-get install -y wget
 
+# Prepare the dependencies required by phyghtmap
+RUN apt-get install python3-setuptools -y
+
 # Download & install latest phyghtmap
 RUN cd /tmp \
- && wget http://katze.tfiu.de/projects/phyghtmap/phyghtmap_2.10-1_all.deb \
- && ( dpkg -i phyghtmap_2.10-1_all.deb || true ) \
+ && wget http://katze.tfiu.de/projects/phyghtmap/phyghtmap_2.23-1_all.deb \
+ && ( dpkg -i phyghtmap_2.23-1_all.deb || true ) \
  && apt-get install -f -y
 
 # Clean up APT when done

@@ -1,16 +1,22 @@
-# generate-osm-contours
-Docker image to generate elevation contours pbf files
+<!-- @format -->
 
-## What for?
-I've always wondered how mapbox vector tiles are created, why elevation contours are so difficult to find to build my own maps...
+# irfancoder/generate-osm-contours
 
-So I modified OpenMapTiles toolchain to build my own elevation vector tiles. 
+Docker image to generate elevation contours pbf files.
 
-## How to use it
-It is already integrated into my Contour branch of OpenMapTiles toolchain.
-Check it here: https://github.com/RomainQuidet/openmaptiles
+This fork contains the following changes:
 
-## Standalone usage
+-   Package update: phyght ~~2.10~~ -> 2.23
+-   Install `python3-setuptools`; a prerequisite to the updated package version
+-   Added CONTOUR_STEP variable to allow for different contour heights (vertical distance between contour lines)
+
+Credits to [Romain Quidet](https://github.com/RomainQuidet) for creating this tool.
+
+## What does this do?
+
+This is a tool to help generate elevation contours for a map! The resulting output would later be used to create map tiles.
+
+## Usage
 
 You'll need to register to https://ers.cr.usgs.gov/register/ in order to allow phyghtmap to download elevation data. It's free.
 
@@ -19,7 +25,8 @@ Once you have your user and login, create a file named .earthexplorerCredentials
 ```
 USER=your_user_name
 PASSWORD=your_password
-``` 
+CONTOUR_STEP=20         // in feet
+```
 
 and pass it to the docker run as environment file.
 
@@ -40,5 +47,3 @@ docker run --rm --env-file=.earthexplorerCredentials --mount source=my_directory
 ### Output
 
 The image will generate a pbf of contours data in OSM format, thanks to http://katze.tfiu.de/projects/phyghtmap/
-
-It is configured to generate 10m steps lines.

@@ -8,7 +8,7 @@ function generate_pbf() {
 
     phyghtmap --version
 	phyghtmap --max-nodes-per-tile=0 \
-			-s 10 \
+			-s $CONTOUR_STEP \
 			-0 \
 			--pbf \
 			--polygon="$poly_file" \
